@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({
-    message: "WMS API is running 🚀",
+    message: "WMS API is running ",
     version: "1.0.0",
   });
 });
@@ -27,5 +27,5 @@ app.get("/health", (_req: Request, res: Response) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server started on http://localhost:${PORT}`);
+  console.log(`Server started on http://localhost:${PORT}`);
 });
