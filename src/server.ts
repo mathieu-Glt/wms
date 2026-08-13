@@ -18,14 +18,6 @@ app.get("/", (_req: Request, res: Response) => {
   });
 });
 
-app.get("/health", (_req: Request, res: Response) => {
-  res.status(200).json({
-    status: "OK",
-    msg: "Process successfully",
-    uptime: process.uptime(),
-  });
-});
-
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
