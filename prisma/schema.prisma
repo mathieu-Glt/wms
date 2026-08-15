@@ -1,0 +1,194 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  OPERATOR
+}
+
+model User {
+  id         String      @id @default(uuid())
+  name       String
+  firstname  String
+  email      String      @unique
+  password   String
+  role       Role        @default(OPERATOR)
+  createdAt  DateTime    @default(now())
+
+  receptions             Reception[]
+  mouvements             Mouvement[]
+  inventairesCreation    Inventaire[] @relation("InventaireCreation")
+  inventairesValidation  Inventaire[] @relation("InventaireValidation")
+}
+
+model Warehouse {
+  id      String  @id @default(uuid())
+  name    String?
+  address String
+  zones   Zone[]
+}
+
+model Zone {
+  id           String     @id @default(uuid())
+  name         String
+  code         String
+  warehouse_id String
+  warehouse    Warehouse  @relation(fields: [warehouse_id], references: [id])
+  locations    Location[]
+}
+
+model Location {
+  id       String  @id @default(uuid())
+  name     String
+  code     String
+  capacity Int
+  actif    Boolean
+  zoneId   String
+  zone     Zone    @relation(fields: [zoneId], references: [id])
+
+  stocks                Stock[]
+  mouvementsSource      Mouvement[] @relation("MouvementSource")
+  mouvementsDestination Mouvement[] @relation("MouvementDestination")
+  lignesReception       LigneReception[]
+  inventaires           Inventaire[]
+}
+
+model Product {
+  id            String            @id @default(uuid())
+  reference     Int
+  name          String
+  describe      String?
+  code_barre    Int
+  unite         String
+  stock_minimum Int
+  actif         Boolean
+
+  suppliers        ProductSupplier[]
+  stocks           Stock[]
+  mouvements       Mouvement[]
+  lignesReception  LigneReception[]
+  lignesInventaire LigneInventaire[]
+}
+
+model Supplier {
+  id       String @id @default(uuid())
+  name     String
+  email    String
+  phone    Int
+  address  String
+  city     String
+  zip_code Int
+  country  String
+
+  products   ProductSupplier[]
+  receptions Reception[]
+}
+
+model ProductSupplier {
+  id         String   @id @default(uuid())
+  productId  String
+  supplierId String
+  product    Product  @relation(fields: [productId], references: [id])
+  supplier   Supplier @relation(fields: [supplierId], references: [id])
+
+  @@unique([productId, supplierId])
+}
+
+model Stock {
+  id         String   @id @default(uuid())
+  productId  String
+  locationId String
+  quantite   Int
+  product    Product  @relation(fields: [productId], references: [id])
+  location   Location @relation(fields: [locationId], references: [id])
+
+  @@unique([productId, locationId])
+}
+
+model Reception {
+  id              String    @id @default(uuid())
+  reference       String
+  status          String
+  date_creation   DateTime  @default(now())
+  date_validation DateTime?
+  supplierId      String
+  userId          String
+  supplier        Supplier  @relation(fields: [supplierId], references: [id])
+  user            User      @relation(fields: [userId], references: [id])
+
+  lignes LigneReception[]
+}
+
+model LigneReception {
+  id              String    @id @default(uuid())
+  quantite_prevue Int
+  quantite_recue  Int
+
+  receptionId String
+  productId   String
+  locationId  String
+
+  reception Reception @relation(fields: [receptionId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
+  location  Location  @relation(fields: [locationId], references: [id])
+}
+
+model Mouvement {
+  id            String   @id @default(uuid())
+  type          String
+  quantite      Int
+  motif         String?
+  date_creation DateTime @default(now())
+
+  productId             String
+  locationSourceId      String
+  locationDestinationId String
+  userId                String
+
+  product              Product  @relation(fields: [productId], references: [id])
+  locationSource       Location @relation("MouvementSource", fields: [locationSourceId], references: [id])
+  locationDestination  Location @relation("MouvementDestination", fields: [locationDestinationId], references: [id])
+  user                 User     @relation(fields: [userId], references: [id])
+}
+
+model Inventaire {
+  id               String    @id @default(uuid())
+  statut           String
+  date_creation    DateTime  @default(now())
+  date_validation  DateTime?
+
+  locationId        String
+  userCreationId    String
+  userValidationId  String?
+
+  location          Location @relation(fields: [locationId], references: [id])
+  userCreation      User     @relation("InventaireCreation", fields: [userCreationId], references: [id])
+  userValidation    User?    @relation("InventaireValidation", fields: [userValidationId], references: [id])
+
+  lignes LigneInventaire[]
+}
+
+model LigneInventaire {
+  id                 String @id @default(uuid())
+  quantite_theorique Int
+  quantite_reelle    Int
+
+  inventaireId String
+  productId    String
+
+  inventaire Inventaire @relation(fields: [inventaireId], references: [id])
+  product    Product    @relation(fields: [productId], references: [id])
+}
+
