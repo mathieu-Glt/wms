@@ -3,7 +3,7 @@ import {
   IUserRepository,
 } from "../repositories/user.repository";
 import { hashPassword, comparePassword } from "../utils/password";
-import { signToken } from "../utils/jwt";
+import { decodeToken, signRefreshToken, signToken } from "../utils/jwt";
 import { Role } from "../models/user.model";
 
 interface RegisterInput {
@@ -57,8 +57,17 @@ export class AuthService {
     }
 
     const token = signToken({ userId: user.id!, role: user.role });
+    const refreshToken = signRefreshToken({
+      userId: user.id!,
+      role: user.role,
+    });
+    const decodeTokenString = decodeToken(token);
+    console.log(
+      "auth.service - login - decodeTokenString : ",
+      decodeTokenString,
+    );
 
-    return { user: this.toPublicUser(user), token };
+    return { user: this.toPublicUser(user), token, refreshToken };
   }
 
   private toPublicUser(user: {
