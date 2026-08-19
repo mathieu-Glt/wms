@@ -2,10 +2,30 @@ import "./config/env";
 
 import express, { Request, Response } from "express";
 import cors from "cors";
-import authRoutes from "./routes/auth.routes";
-import usersRoutes from "./routes/user.routes";
+import session from "express-session";
+import authRoutes from "./user/routes/auth.routes";
+import usersRoutes from "./user/routes/user.routes";
+import productRoutes from "./product/routes/product.route";
+import warehouseRoutes from "./warehouse/routes/warehouse.route";
 
 const app = express();
+
+app.use(
+  session({
+    secret: process.env.SECRET_SESSION,
+    resave: false,
+    saveUninitialized: true,
+    cookie: function (req) {
+      var match = req.url.match(/^\/([^/]+)/);
+      return {
+        path: match ? "/" + match[1] : "/",
+        httpOnly: true,
+        secure: req.secure || false,
+        maxAge: 60000,
+      };
+    },
+  }),
+);
 
 const PORT = Number(process.env.PORT) || 5000;
 
@@ -14,6 +34,8 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/warehouses", warehouseRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({

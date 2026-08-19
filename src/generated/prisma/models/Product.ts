@@ -28,13 +28,11 @@ export type AggregateProduct = {
 
 export type ProductAvgAggregateOutputType = {
   reference: number | null
-  code_barre: number | null
   stock_minimum: number | null
 }
 
 export type ProductSumAggregateOutputType = {
   reference: number | null
-  code_barre: number | null
   stock_minimum: number | null
 }
 
@@ -43,7 +41,7 @@ export type ProductMinAggregateOutputType = {
   reference: number | null
   name: string | null
   describe: string | null
-  code_barre: number | null
+  code_barre: string | null
   unite: string | null
   stock_minimum: number | null
   actif: boolean | null
@@ -54,7 +52,7 @@ export type ProductMaxAggregateOutputType = {
   reference: number | null
   name: string | null
   describe: string | null
-  code_barre: number | null
+  code_barre: string | null
   unite: string | null
   stock_minimum: number | null
   actif: boolean | null
@@ -75,13 +73,11 @@ export type ProductCountAggregateOutputType = {
 
 export type ProductAvgAggregateInputType = {
   reference?: true
-  code_barre?: true
   stock_minimum?: true
 }
 
 export type ProductSumAggregateInputType = {
   reference?: true
-  code_barre?: true
   stock_minimum?: true
 }
 
@@ -210,7 +206,7 @@ export type ProductGroupByOutputType = {
   reference: number
   name: string
   describe: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -244,7 +240,7 @@ export type ProductWhereInput = {
   reference?: Prisma.IntFilter<"Product"> | number
   name?: Prisma.StringFilter<"Product"> | string
   describe?: Prisma.StringNullableFilter<"Product"> | string | null
-  code_barre?: Prisma.IntFilter<"Product"> | number
+  code_barre?: Prisma.StringFilter<"Product"> | string
   unite?: Prisma.StringFilter<"Product"> | string
   stock_minimum?: Prisma.IntFilter<"Product"> | number
   actif?: Prisma.BoolFilter<"Product"> | boolean
@@ -279,7 +275,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   reference?: Prisma.IntFilter<"Product"> | number
   name?: Prisma.StringFilter<"Product"> | string
   describe?: Prisma.StringNullableFilter<"Product"> | string | null
-  code_barre?: Prisma.IntFilter<"Product"> | number
+  code_barre?: Prisma.StringFilter<"Product"> | string
   unite?: Prisma.StringFilter<"Product"> | string
   stock_minimum?: Prisma.IntFilter<"Product"> | number
   actif?: Prisma.BoolFilter<"Product"> | boolean
@@ -314,7 +310,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   reference?: Prisma.IntWithAggregatesFilter<"Product"> | number
   name?: Prisma.StringWithAggregatesFilter<"Product"> | string
   describe?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
-  code_barre?: Prisma.IntWithAggregatesFilter<"Product"> | number
+  code_barre?: Prisma.StringWithAggregatesFilter<"Product"> | string
   unite?: Prisma.StringWithAggregatesFilter<"Product"> | string
   stock_minimum?: Prisma.IntWithAggregatesFilter<"Product"> | number
   actif?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
@@ -325,7 +321,7 @@ export type ProductCreateInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -341,7 +337,7 @@ export type ProductUncheckedCreateInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -357,7 +353,7 @@ export type ProductUpdateInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -373,7 +369,7 @@ export type ProductUncheckedUpdateInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -389,7 +385,7 @@ export type ProductCreateManyInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -400,7 +396,7 @@ export type ProductUpdateManyMutationInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -411,7 +407,7 @@ export type ProductUncheckedUpdateManyInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -430,7 +426,6 @@ export type ProductCountOrderByAggregateInput = {
 
 export type ProductAvgOrderByAggregateInput = {
   reference?: Prisma.SortOrder
-  code_barre?: Prisma.SortOrder
   stock_minimum?: Prisma.SortOrder
 }
 
@@ -458,7 +453,6 @@ export type ProductMinOrderByAggregateInput = {
 
 export type ProductSumOrderByAggregateInput = {
   reference?: Prisma.SortOrder
-  code_barre?: Prisma.SortOrder
   stock_minimum?: Prisma.SortOrder
 }
 
@@ -542,7 +536,7 @@ export type ProductCreateWithoutSuppliersInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -557,7 +551,7 @@ export type ProductUncheckedCreateWithoutSuppliersInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -588,7 +582,7 @@ export type ProductUpdateWithoutSuppliersInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -603,7 +597,7 @@ export type ProductUncheckedUpdateWithoutSuppliersInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -618,7 +612,7 @@ export type ProductCreateWithoutStocksInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -633,7 +627,7 @@ export type ProductUncheckedCreateWithoutStocksInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -664,7 +658,7 @@ export type ProductUpdateWithoutStocksInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -679,7 +673,7 @@ export type ProductUncheckedUpdateWithoutStocksInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -694,7 +688,7 @@ export type ProductCreateWithoutLignesReceptionInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -709,7 +703,7 @@ export type ProductUncheckedCreateWithoutLignesReceptionInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -740,7 +734,7 @@ export type ProductUpdateWithoutLignesReceptionInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -755,7 +749,7 @@ export type ProductUncheckedUpdateWithoutLignesReceptionInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -770,7 +764,7 @@ export type ProductCreateWithoutMouvementsInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -785,7 +779,7 @@ export type ProductUncheckedCreateWithoutMouvementsInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -816,7 +810,7 @@ export type ProductUpdateWithoutMouvementsInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -831,7 +825,7 @@ export type ProductUncheckedUpdateWithoutMouvementsInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -846,7 +840,7 @@ export type ProductCreateWithoutLignesInventaireInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -861,7 +855,7 @@ export type ProductUncheckedCreateWithoutLignesInventaireInput = {
   reference: number
   name: string
   describe?: string | null
-  code_barre: number
+  code_barre: string
   unite: string
   stock_minimum: number
   actif: boolean
@@ -892,7 +886,7 @@ export type ProductUpdateWithoutLignesInventaireInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -907,7 +901,7 @@ export type ProductUncheckedUpdateWithoutLignesInventaireInput = {
   reference?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   describe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  code_barre?: Prisma.IntFieldUpdateOperationsInput | number
+  code_barre?: Prisma.StringFieldUpdateOperationsInput | string
   unite?: Prisma.StringFieldUpdateOperationsInput | string
   stock_minimum?: Prisma.IntFieldUpdateOperationsInput | number
   actif?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1060,7 +1054,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     reference: number
     name: string
     describe: string | null
-    code_barre: number
+    code_barre: string
     unite: string
     stock_minimum: number
     actif: boolean
@@ -1496,7 +1490,7 @@ export interface ProductFieldRefs {
   readonly reference: Prisma.FieldRef<"Product", 'Int'>
   readonly name: Prisma.FieldRef<"Product", 'String'>
   readonly describe: Prisma.FieldRef<"Product", 'String'>
-  readonly code_barre: Prisma.FieldRef<"Product", 'Int'>
+  readonly code_barre: Prisma.FieldRef<"Product", 'String'>
   readonly unite: Prisma.FieldRef<"Product", 'String'>
   readonly stock_minimum: Prisma.FieldRef<"Product", 'Int'>
   readonly actif: Prisma.FieldRef<"Product", 'Boolean'>

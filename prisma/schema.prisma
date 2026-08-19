@@ -70,11 +70,10 @@ model Product {
   reference     Int
   name          String
   describe      String?
-  code_barre    Int
+  code_barre    String
   unite         String
   stock_minimum Int
   actif         Boolean
-
   suppliers        ProductSupplier[]
   stocks           Stock[]
   mouvements       Mouvement[]
