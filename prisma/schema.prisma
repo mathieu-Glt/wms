@@ -35,7 +35,7 @@ model User {
 
 model Warehouse {
   id      String  @id @default(uuid())
-  name    String?
+  name    String
   address String
   zones   Zone[]
 }
@@ -85,10 +85,10 @@ model Supplier {
   id       String @id @default(uuid())
   name     String
   email    String
-  phone    Int
+  phone    String
   address  String
   city     String
-  zip_code Int
+  zip_code String
   country  String
 
   products   ProductSupplier[]

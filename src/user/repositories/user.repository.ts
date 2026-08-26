@@ -14,7 +14,6 @@ export interface IUserRepository {
   findById(id: string): Promise<User | null>;
   create(data: CreateUserData): Promise<User>;
   find(): Promise<User[]>;
-  //   update(data: CreateUserData): Promise<User>;
 }
 
 export class PrismaUserRepository implements IUserRepository {

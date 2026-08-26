@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Supplier" ALTER COLUMN "phone" SET DATA TYPE TEXT,
+ALTER COLUMN "zip_code" SET DATA TYPE TEXT;

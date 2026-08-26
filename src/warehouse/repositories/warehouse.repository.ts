@@ -36,7 +36,7 @@ export class PrismaWarehouseRepository implements IWarehouseRepository {
     return Warehouse.create({ ...record });
   }
 
-  async update(id: string, data: UpdateWarehouseData): Promise<Product> {
+  async update(id: string, data: UpdateWarehouseData): Promise<Warehouse> {
     const record = await prisma.warehouse.update({ where: { id }, data });
     return Warehouse.create({ ...record });
   }
